@@ -1,20 +1,11 @@
 <!DOCTYPE html>
 <html>
-
-  {% include head.html %}
-
-  <body>
-
-    {% include header.html %}
-
-    <div class="page-content">
-      <div class="wrapper">
-        {{ content }}
-      </div>
+{% include head.html %}
+<body>
+  <main style="display: flex; flex-direction: column; text-align: center; max-width: 40rem; margin: 0 auto;">
+    <div style="display: flex; flex-direction: column; flex: 1 0 auto;">
+      {{ content }}
     </div>
-
-    {% include footer.html %}
-
-  </body>
-
+  </main>
+</body>
 </html>

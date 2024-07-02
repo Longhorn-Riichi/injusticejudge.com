@@ -1,53 +1,109 @@
 ---
-# Only the main Sass file needs front matter (the dashes are enough)
+
 ---
 @charset "utf-8";
 
+$text-color:       #4a4a4f;
+$background-color: #f1f1f1;
+/* TODO: background with tiles */
 
-
-// Our variables
-$base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-$base-font-size:   16px;
-$base-font-weight: 400;
-$small-font-size:  $base-font-size * 0.875;
-$base-line-height: 1.5;
-
-$spacing-unit:     30px;
-
-$text-color:       #111;
-$background-color: #fdfdfd;
-$brand-color:      #2a7ae2;
-
-$grey-color:       #828282;
-$grey-color-light: lighten($grey-color, 40%);
-$grey-color-dark:  darken($grey-color, 25%);
-
-// Width of the content area
-$content-width:    800px;
-
-$on-palm:          600px;
-$on-laptop:        800px;
-
-
-
-// Use media queries like this:
-// @include media-query($on-palm) {
-//     .wrapper {
-//         padding-right: $spacing-unit / 2;
-//         padding-left: $spacing-unit / 2;
-//     }
-// }
-@mixin media-query($device) {
-    @media screen and (max-width: $device) {
-        @content;
-    }
+html, body, main {
+  width: 100%;
+  background-color: $background-color;
+  font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+  font-weight: normal;
+  color: $text-color;
 }
 
+input:focus {
+  border-color: $background-color;
+}
+
+.main-input {
+  flex: 8;
+  padding: 0.5rem 1rem;
+  border: 1px solid #bbb;
+  border-right-width: 0;
+  border-radius: 0.2rem 0 0 0.2rem;
+  z-index: 2;
+}
+.main-input + button {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border: 1px solid #bbb;
+  border-radius: 0 0.2rem 0.2rem 0;
+  cursor: pointer;
+}
+
+.input-popout, .input-popout::before {
+  border: 0.2rem solid lightgray;
+  border-radius: 0.2rem 0.2rem 0px 0px;
+  background-color: lightgray;
+  height: 100%;
+  text-align: left;
+  margin: 0 1rem;
+}
+.input-popout {
+  position: relative;
+  align-self: start;
+  z-index: 1;
+  transform: scaleY(0%);
+}
+.input-popout.active {
+  transition: transform ease-in 0.1s;
+  transform: scaleY(100%);
+}
+.input-popout:first-child { transform-origin: bottom; }
+.input-popout:last-child { transform-origin: top; }
+.input-popout::before {
+  width: 2rem;
+  content: "";
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  left: calc(100% - 1rem);
+  top: -0.2rem;
+  z-index: -1;
+}
+.input-popout:first-child::before { transform: skewX(45deg); }
+.input-popout:last-child::before { transform: skewX(-45deg); }
 
 
-// Import partials from `sass_dir` (defaults to `_sass`)
-@import
-        "base",
-        "layout",
-        "syntax-highlighting"
-;
+
+
+
+
+
+
+
+
+
+
+// // Our variables
+// $base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+// $base-font-size:   16px;
+// $base-font-weight: 400;
+// $small-font-size:  $base-font-size * 0.875;
+// $base-line-height: 1.5;
+// 
+// $spacing-unit:     30px;
+// 
+// $text-color:       #111;
+// $background-color: #fdfdfd;
+// $brand-color:      #2a7ae2;
+// 
+// $grey-color:       #828282;
+// $grey-color-light: lighten($grey-color, 40%);
+// $grey-color-dark:  darken($grey-color, 25%);
+// 
+// // Width of the content area
+// $content-width:    800px;
+// 
+// $on-palm:          600px;
+// $on-laptop:        800px;
+// 
+// @mixin media-query($device) {
+//     @media screen and (max-width: $device) {
+//         @content;
+//     }
+// }

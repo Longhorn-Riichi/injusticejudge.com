@@ -1,119 +1,51 @@
 [![Build Status](https://gitlab.com/pages/jekyll/badges/master/pipeline.svg)](https://gitlab.com/pages/jekyll/-/pipelines?ref=master)
 ![Jekyll Version](https://img.shields.io/gem/v/jekyll.svg)
 
----
+# InjusticeJudge
 
-Example [Jekyll] website using GitLab Pages.  View it live at https://pages.gitlab.io/jekyll
+Analyzes your Mahjong Soul, `tenhou.net`, or Riichi City game to find instances of mahjong injustice. Currently, it checks for:
 
-[Learn more about GitLab Pages](https://pages.gitlab.io) or read the the [official GitLab Pages documentation](https://docs.gitlab.com/ce/user/project/pages/).
+- Your tenpai was chased with a worse wait and you deal into it
+- You experience iishanten hell (9+ draws)
+- You start with 5+ shanten
+- You lost points to someone's first-row ron or tsumo
+- As dealer you lost points to a baiman+ tsumo
+- Someone else had a bad wait ippatsu tsumo
+- You just barely fail nagashi (due to the draw or a call)
+- You deal into someone with your riichi tile (or tile that got you into tenpai)
+- You draw a tile that would have completed a past tenpai wait
+- You dealt in with what would have been the final discard of the round, while tenpai
+- You dealt into any of: dama, ippatsu, houtei, double/triple ron, ura 3, or closed dora 3
+- Your iishanten haipai got reset due to an abortive draw
+- You reached yakuman tenpai and did not win
+- You got head bumped
+- You were haneman+ tenpai but someone else won with a below-mangan hand
+- You dropped placement only because the winner got ura
+- You had a (good) 4+ sided wait and didn't win
+- You dealt into chankan while tenpai
+- You had an early 8 outs ryanmen (or better) and never folded, but didn't win
+- You keep drawing honor tiles that you discard immediately (6+ times)
+- You draw and discard the same tile 6 times in a row (not in tenpai)
+- You discarded dora and immediately drew dora after
+- Your turn was skipped by pon/kan 3 or more times
+- Your tenpai wait was damaged by someone calling ankan
+- You are going for honitsu but drew 6+ off-suit tiles in a row
+- You're still 4-shanten or worse after the first row of discards
+- You had to deal with a triple riichi in which you are the one not in riichi (and you dealt in)
+- You started with 3+ dora while 4th place, but then someone else won
+- Your iishanten had 0 outs (at any point in time)
+- You had no safe tiles after someone's riichi and drew at least 4 dangerous tiles afterwards
+- Everyone immediately discarded a dangerous tile after your riichi
+- You drew into tenpai but all the discards that give you tenpai will deal in
+- You could have called chii into a 4+ han tenpai but were overridden by pon/kan
+- At least half of your waits were in the dead wall
+- You would have drawn your tile had the game continued for five more draws
+- A riichi player would have dropped your tile had the game continued for five more draws
+- A previous discard passed but the very next turn you discarded the same tile and it dealt in
 
----
+__Note__: This program was explicitly written to
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+1) be funny
+2) demonstrate how common some of these perceived injustices are.
 
-- [Getting Started](#getting-started)
-  - [Start by forking this repository](#start-by-forking-this-repository)
-  - [Start from a local Jekyll project](#start-from-a-local-jekyll-project)
-- [GitLab CI](#gitlab-ci)
-- [Using Jekyll locally](#using-jekyll-locally)
-- [GitLab User or Group Pages](#gitlab-user-or-group-pages)
-- [Did you fork this project?](#did-you-fork-this-project)
-- [Other examples](#other-examples)
-- [Troubleshooting](#troubleshooting)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-## Getting Started
-
-You can get started with GitLab Pages using Jekyll easily by either forking this repository or by uploading a new/existing Jekyll project.
-
-Remember you need to wait for your site to build before you will be able to see your changes.  You can track the build on the **Pipelines** tab.
-
-### Start by forking this repository
-
-1. Fork this repository.
-1. **IMPORTANT:** Remove the fork relationship.
-Go to **Settings (⚙)** > **Edit Project** and click the **"Remove fork relationship"** button.
-1. Enable Shared Runners.
-Go to **Settings (⚙)** > **Pipelines** and click the **"Enable shared Runners"** button.
-1. Rename the repository to match the name you want for your site.
-1. Edit your website through GitLab or clone the repository and push your changes.
-
-### Start from a local Jekyll project
-
-1. [Install][] Jekyll.
-1. Use `jekyll new` to create a new Jekyll Project.
-1. Add [this `.gitlab-ci.yml`](.gitlab-ci.yml) to the root of your project.
-1. Push your repository and changes to GitLab.
-
-## GitLab CI
-
-This project's static Pages are built by [GitLab CI][ci], following the steps
-defined in [`.gitlab-ci.yml`](.gitlab-ci.yml):
-
-```
-image: ruby:latest
-
-variables:
-  JEKYLL_ENV: production
-
-pages:
-  script:
-  - bundle install
-  - bundle exec jekyll build -d public
-  artifacts:
-    paths:
-    - public
-  only:
-  - master
-```
-
-## Using Jekyll locally
-
-To work locally with this project, you'll have to follow the steps below:
-
-1. Fork, clone or download this project
-1. [Install][] Jekyll
-1. Download dependencies: `bundle`
-1. Build and preview: `bundle exec jekyll serve`
-1. Add content
-
-The above commands should be executed from the root directory of this project.
-
-Read more at Jekyll's [documentation][].
-
-## GitLab User or Group Pages
-
-To use this project as your user/group website, you will need one additional
-step: just rename your project to `namespace.gitlab.io`, where `namespace` is
-your `username` or `groupname`. This can be done by navigating to your
-project's **Settings**.
-
-Read more about [user/group Pages][userpages] and [project Pages][projpages].
-
-## Did you fork this project?
-
-If you forked this project for your own use, please go to your project's
-**Settings** and remove the forking relationship, which won't be necessary
-unless you want to contribute back to the upstream project.
-
-## Other examples
-
-* [jekyll-branched](https://gitlab.com/pages/jekyll-branched) demonstrates how you can keep your GitLab Pages site in one branch and your project's source code in another.
-* The [jekyll-themes](https://gitlab.com/jekyll-themes) group contains a collection of example projects you can fork (like this one) having different visual styles.
-
-## Troubleshooting
-
-1. CSS is missing! That means two things:
-    * Either that you have wrongly set up the CSS URL in your templates, or
-    * your static generator has a configuration option that needs to be explicitly
-    set in order to serve static assets under a relative URL.
-
-[ci]: https://about.gitlab.com/gitlab-ci/
-[Jekyll]: http://jekyllrb.com/
-[install]: https://jekyllrb.com/docs/installation/
-[documentation]: https://jekyllrb.com/docs/home/
-[userpages]: https://docs.gitlab.com/ce/user/project/pages/introduction.html#user-or-group-pages
-[projpages]: https://docs.gitlab.com/ce/user/project/pages/introduction.html#project-pages
+What appears as an injustice to you may be well justified from another player's perspective!
