@@ -17,10 +17,4 @@ layout: default
     </span>
 </form>
 
-<div style="flex: 1; display: flex; flex-direction: row; padding: 1rem; text-align: left">
-  <div style="flex: 5; border: 2px solid black">
-    MY_CONTENT
-  </div>
-  <div style="flex: 3; border: 2px solid red">
-  </div>
-</div>
+<div class="result"></div>

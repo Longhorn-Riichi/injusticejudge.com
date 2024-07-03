@@ -6,5 +6,5 @@ if __name__ == "__main__":
     link = sys.argv[1]
     print("<ul>")
     for line in asyncio.run(analyze_game(link, look_for={"injustice"})):
-        print(f"  <li>{line}</li>\n")
+        print(f"  <li>{line[2:]}</li>\n")
     print("</ul>")

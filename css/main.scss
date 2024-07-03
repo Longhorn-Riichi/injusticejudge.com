@@ -79,12 +79,22 @@ input:focus {
     width: 1em;
   }
   &.sideways + .tile.sideways {
-    position: absolute;
+    width: 0;
+  }
+  &.sideways + .tile.sideways::before {
+    display: inline-block;
+    content: "";
+    width: 1em;
+    height: 1em;
+    background: inherit;
     transform: translateX(-1em) translateY(-0.5em);
   }
 }
 
-
+.result {
+  text-align: left;
+  font-size: 150%;
+}
 
 
 
