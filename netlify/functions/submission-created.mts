@@ -13,7 +13,7 @@ export default async (req: Request, context: Context) => {
   player = "a823629735"
   key = `${identifier}@${player}`
 
-  const result = await redis.get(key);
+  let result = await redis.get(key);
   if (!result) {
     result = "Hello World!"
     await redis.set(key, result);
