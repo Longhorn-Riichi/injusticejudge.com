@@ -2,6 +2,7 @@ import type { Context, Netlify } from "@netlify/functions";
 import { Redis } from '@upstash/redis'
 import fs from 'node:fs';
 import process from 'node:process';
+import axios from 'axios';
 import util from 'node:util';
 import { exec } from "node:child_process";
 let pexec = util.promisify(exec);
@@ -73,14 +74,18 @@ export default async (req: Request, context: Context) => {
   let key = `${identifier}@${player}`;
   let result = await redis.get(key);
   if (!result) {
-    const cmd = "python ../injusticejudge.py https://mahjongsoul.game.yo-star.com/?paipu=" + identifier + "_" + player;
-    process.env["use_discord_tile_emoji"] = "True";
-    process.env["DISABLE_INJUSTICE_CACHE"] = "1";
-    const opts = {"cwd": process.cwd() + "/InjusticeJudge"};
-    const { stdout, stderr } = await pexec(cmd, opts);
-    // console.log("stdout:\n" + stdout + "\nstderr:\n" + stderr);
-    result = fix_bold_italic(convert_tiles(stdout));
-    await redis.set(key, result);
+
+    let api_url = "http://129.153.119.220:5111/injustice";
+    let data = {"link": `https://mahjongsoul.game.yo-star.com/?paipu=${identifier}_${player}`}
+    let config = {"headers": {"Content-Type": "application/json"}};
+    try {
+      const response = await axios.post(api_url, data, config);
+      console.log(response.status, response.data);
+      result = fix_bold_italic(convert_tiles(response.data));
+      await redis.set(key, result);
+    } catch (e) {
+      console.error('Error during the request:', e.message);
+    }
   }
 
   return make_response(result);
