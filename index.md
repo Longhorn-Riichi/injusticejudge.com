@@ -6,10 +6,10 @@ layout: default
 
 ### {{ site.subtitle }}
 
-<form method="POST" netlify name="main-form" style="flex: 1; display: flex; flex-direction: column">
+<form method="POST" netlify action="/" name="main-form" style="flex: 1; display: flex; flex-direction: column">
   <span class="input-popout">Riichi City ID</span>
   <div style="flex: 1; display: flex; flex-direction: row; padding: 0 1rem;">
-    <input type="url" placeholder="Enter Mahjong Soul/tenhou.net replay URL, or Riichi City replay ID" name="url" class="main-input"/>
+    <input placeholder="Enter Mahjong Soul/tenhou.net replay URL, or Riichi City replay ID" name="url" class="main-input"/>
     <button type="submit">Submit</button>
   </div>
   <span class="input-popout">Riichi City Username:
@@ -19,7 +19,7 @@ layout: default
 
 <div style="flex: 1; display: flex; flex-direction: row; padding: 1rem;">
   <div style="flex: 5; border: 2px solid black">
-    content
+    MY_CONTENT
   </div>
   <div style="flex: 3; border: 2px solid red">
   </div>
