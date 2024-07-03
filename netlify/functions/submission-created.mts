@@ -31,6 +31,13 @@ function parse_identifier(url: string, username: string) {
   return ret;
 }
 
+function to_ul(s: string[]) {
+  ret = "";
+  for (const line of s):
+    ret += `<li>${line.substr(2)}</li>`;
+  return `<ul>{ret}</ul>`;
+}
+
 const normal_tiles = ["0m", "1m", "2m", "3m", "4m", "5m", "6m", "7m", "8m", "9m", "0p", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "0s", "1s", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "1z", "2z", "3z", "4z", "5z", "6z", "7z", "1x"];
 const normal_dora_tiles = ["0md", "1md", "2md", "3md", "4md", "5md", "6md", "7md", "8md", "9md", "0pd", "1pd", "2pd", "3pd", "4pd", "5pd", "6pd", "7pd", "8pd", "9pd", "0sd", "1sd", "2sd", "3sd", "4sd", "5sd", "6sd", "7sd", "8sd", "9sd", "1zd", "2zd", "3zd", "4zd", "5zd", "6zd", "7zd", "1xd"];
 const sideways_tiles = ["0M", "1M", "2M", "3M", "4M", "5M", "6M", "7M", "8M", "9M", "0P", "1P", "2P", "3P", "4P", "5P", "6P", "7P", "8P", "9P", "0S", "1S", "2S", "3S", "4S", "5S", "6S", "7S", "8S", "9S", "1Z", "2Z", "3Z", "4Z", "5Z", "6Z", "7Z", "1X"];
@@ -80,8 +87,7 @@ export default async (req: Request, context: Context) => {
     let config = {"headers": {"Content-Type": "application/json"}};
     try {
       const response = await axios.post(api_url, data, config);
-      console.log(response.status, response.data);
-      result = fix_bold_italic(convert_tiles(response.data));
+      result = fix_bold_italic(convert_tiles(to_ul(response.data)));
       await redis.set(key, result);
     } catch (e) {
       console.error('Error during the request:', e.message);
