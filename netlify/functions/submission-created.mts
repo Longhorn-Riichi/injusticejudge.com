@@ -48,7 +48,7 @@ function convert_tiles(stdout: string) {
     if (y == -1) [y, x, width] = [normal_dora_tiles.indexOf(tile), 0.75, 0.75];
     if (y == -1) [y, x, width] = [sideways_tiles.indexOf(tile), 1.5, 1];
     if (y == -1) [y, x, width] = [sideways_dora_tiles.indexOf(tile), 2.5, 1];
-    return `<div class="tile" style="width: ${width}em; background-position: -${x}em -${y}em;"></div>`;
+    return `<div class="tile${width===1 ? ' sideways' : ''}" style="background-position: -${x}em -${y}em;"></div>`;
   });
 }
 

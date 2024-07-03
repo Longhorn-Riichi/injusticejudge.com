@@ -70,10 +70,18 @@ input:focus {
 
 .tile {
   display: inline-block;
+  width: 0.75em;
   height: 1em;
   background: url('/images/tiles.png') no-repeat;
   background-size: auto 38em;
   vertical-align: sub;
+  &.sideways {
+    width: 1em;
+  }
+  &.sideways + .tile.sideways {
+    position: absolute;
+    transform: translateX(-1em) translateY(-0.5em);
+  }
 }
 
 
