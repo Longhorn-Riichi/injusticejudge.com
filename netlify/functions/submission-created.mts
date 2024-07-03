@@ -32,7 +32,7 @@ function parse_identifier(url: string, username: string) {
 }
 
 function to_ul(s: string[]) {
-  ret = "";
+  let ret = "";
   for (const line of s) ret += `<li>${line.substr(2)}</li>`;
   return `<ul>${ret}</ul>`;
 }
