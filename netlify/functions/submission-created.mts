@@ -8,33 +8,51 @@ const redis = new Redis({
   token: Netlify.env.get("UPSTASH_REDIS_REST_TOKEN"),
 });
 
-export default async (req: Request, context: Context) => {
-  // const { url } = JSON.parse(event.body);
-  // pretend we broke url into identifier and player
-  console.log("started!");
-  console.log("cwd is " + process.cwd());
-  console.log("url is " + Netlify.env.get("REDIS_ENDPOINT"));
-  let identifier = "220609-dd14987e-a246-4267-836a-ea4503713994";
-  let player = "a823629735";
-  let key = `${identifier}@${player}`;
+const majsoul_regex = /\d{6}-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}(_a[a-z0-9]+)?/
 
-  console.log("waiting for redis");
-  let result = await redis.get(key);
-  console.log("done waiting for redis, got result " + result);
-  if (!result) {
-    result = "Hello World!"
-    console.log("pushing to redis");
-    await redis.set(key, result);
-    console.log("done pushing to redis");
+function parse_identifier(url, username) {
+  let ret = ["", ""];
+  let player = "";
+  // console.log("checking if " + url + " matches regex");
+  let match = url.match(majsoul_regex);
+  // console.log(match);
+  if (match) {
+    ret[0] = match[0];
+    if (match.length === 2) ret[1] = match[1].substr(1);
+  } else {
+    throw new Exception("Could not parse identifier");
   }
+  // console.log(ret);
+  return ret;
+}
 
-  console.log("loading body");
+function make_response(result) {
   let body = fs.readFileSync("_site/index.html", "utf8").replace(/MY_CONTENT/, result);
-  console.log("done loading body: " + body);
-
-  console.log("returning");
   return new Response(body, {
     "status": 200,
     "headers": {"Content-Type": "text/html"}
   });
+}
+
+export default async (req: Request, context: Context) => {
+  // unwrap the request
+  const { payload } = await req.json();
+  const url = payload.data.url;
+  const given_username = payload.data.username;
+  let identifier, player;
+  try {
+    [identifier, player] = parse_identifier(url, given_username);
+  } catch (e) {
+    return make_response("Invalid input");
+  }
+
+  let key = `${identifier}@${player}`;
+
+  let result = await redis.get(key);
+  if (!result) {
+    result = "Hello World!"
+    await redis.set(key, result);
+  }
+
+  return make_response(result);
 }
