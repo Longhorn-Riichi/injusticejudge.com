@@ -68,8 +68,13 @@ input:focus {
 .input-popout:first-child::before { transform: skewX(45deg); }
 .input-popout:last-child::before { transform: skewX(-45deg); }
 
-
-
+.tile {
+  display: inline-block;
+  height: 1em;
+  background: url('/images/tiles.png') no-repeat;
+  background-size: auto 38em;
+  vertical-align: sub;
+}
 
 
 
