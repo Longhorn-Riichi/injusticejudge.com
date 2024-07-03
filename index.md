@@ -6,7 +6,7 @@ layout: default
 
 ### {{ site.subtitle }}
 
-<form method="POST" netlify action="/" name="main-form" style="flex: 1; display: flex; flex-direction: column">
+<form method="POST" netlify name="main-form" style="flex: 1; display: flex; flex-direction: column">
   <span class="input-popout">Riichi City ID</span>
   <div style="flex: 1; display: flex; flex-direction: row; padding: 0 1rem;">
     <input placeholder="Mahjong Soul/tenhou.net replay URL, or Riichi City replay ID" name="url" class="main-input"/>
