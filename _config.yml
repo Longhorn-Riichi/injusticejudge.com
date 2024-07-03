@@ -40,16 +40,22 @@ url: "https://injusticejudge.com" # the base hostname & protocol for your site, 
 # their entries' file path in the `include:` list.
 #
 exclude:
-  - .sass-cache/
   - .jekyll-cache/
-  - InjusticeJudge/
-  - netlify/
-  - gemfiles/
+  - .netlify/
+  - .sass-cache/
+  - _site/
+  - deno.lock
   - Gemfile
   - Gemfile.lock
-  - package.json
-  - package-lock.json
+  - gemfiles/
+  - injusticejudge.py
+  - InjusticeJudge/
+  - netlify.toml
+  - netlify/
   - node_modules/
+  - package-lock.json
+  - package.json
+  - README.md
   - vendor/bundle/
   - vendor/cache/
   - vendor/gems/
