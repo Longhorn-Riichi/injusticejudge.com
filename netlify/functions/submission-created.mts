@@ -67,11 +67,12 @@ export default async (req: Request, context: Context) => {
   let key = `${identifier}@${player}`;
   let result = await redis.get(key);
   if (!result) {
-    const url2 = "https://mahjongsoul.game.yo-star.com/?paipu=" + identifier + "_" + player;
+    const cmd = "python ../injusticejudge.py https://mahjongsoul.game.yo-star.com/?paipu=" + identifier + "_" + player;
     process.env["use_discord_tile_emoji"] = "True";
+    process.env["DISABLE_INJUSTICE_CACHE"] = "1";
     const opts = {"cwd": process.cwd() + "/InjusticeJudge"};
-    const { stdout, stderr } = await pexec("python main.py " + url2, opts);
-    console.log("stdout:\n" + stdout + "\nstderr:\n" + stderr);
+    const { stdout, stderr } = await pexec(cmd, opts);
+    // console.log("stdout:\n" + stdout + "\nstderr:\n" + stderr);
     result = convert_tiles(stdout);
     await redis.set(key, result);
   }
