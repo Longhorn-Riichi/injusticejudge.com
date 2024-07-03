@@ -50,7 +50,8 @@ function fix_bold_italic(s: string) {
 }
 
 function make_response(result: string) {
-  let body = fs.readFileSync("_site/index.html", "utf8")
+  console.log(process.cwd());
+  let body = fs.readFileSync("/index.html", "utf8")
                .replace(/<div class="result"><\/div>/, `<div class="result">${result}</div>`);
   return new Response(body, {
     "status": 200,
