@@ -11,7 +11,14 @@ const redis = new Redis({
 });
 
 const majsoul_id_regex = /^\d{6}-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/
-const majsoul_prefix = "https://mahjongsoul.game.yo-star.com/?paipu="
+const majsoul_player_regex = /^a\d+$/
+const tenhou_id_regex = /^\d{10}gm-\d{4}-\d{4}-[0-9a-f]{8}$/;
+const tenhou_player_regex = /^\d+$/;
+const riichicity_id_regex = /^[a-z0-9]{20}$/;
+const riichicity_player_regex = /^@\d$/;
+
+const majsoul_prefix = "https://mahjongsoul.game.yo-star.com/?paipu=";
+const tenhou_prefix = "https://tenhou.net/0/?log=";
 
 function to_ul(s: string[]) {
   let ret = "";
@@ -34,14 +41,16 @@ function convert_tiles(s: string) {
   });
 }
 
-function fix_bold_italic(s: string) {
+function fix_formatting(s: string) {
   return s.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>")
-          .replace(/\*(.*?)\*/g, "<i>$1</i>");
+          .replace(/\*(.*?)\*/g, "<i>$1</i>")
+          .replace(/\u2007/g, "<span> </span>");
 }
 
-function make_response(result: string) {
+function make_response(result: string, prefill?: string) {
   let body = fs.readFileSync(process.cwd() + "/_site/index.html", "utf8")
                .replace(/<div class="result"><\/div>/, `<div class="result">${result}</div>`);
+  if (prefill) body = body.replace(/value=""/, `value="${prefill}"`);
   return new Response(body, {
     "status": 302,
     "headers": {"Content-Type": "text/html"}
@@ -54,26 +63,37 @@ export const config: Config = {
 
 export default async (req: Request, context: Context) => {
   // unwrap the request, if any
-  console.log("running fn!!");
   const identifier = decodeURIComponent(context.params.identifier);
-  const player = decodeURIComponent(context.params.player);
-  if (!identifier.match(majsoul_id_regex)) {
-    console.log("invalid input");
-    return make_response(`<div style="text-align: center; width: 100%">Invalid input</div>`);
+  let player = decodeURIComponent(context.params.player);
+  let input = "";
+  if (player === "_") player = "";
+  if (identifier.match(majsoul_id_regex) && (player === "" || player.match(majsoul_player_regex))) {
+    input = `${majsoul_prefix}${identifier}_${player}`;
+  } else if (identifier.match(tenhou_id_regex) && (player === "" || player.match(tenhou_player_regex))) {
+    input = `${tenhou_prefix}${identifier}&tw=${player}`;
+  } else if (identifier.match(riichicity_id_regex) && player !== "") {
+    input = `${identifier}@${player}`;
+  } else {
+    if (identifier.match(riichicity_id_regex) && player === "") {
+      return make_response(`<div style="text-align: center; width: 100%">Input <b>id@username</b> for Riichi City</div>`, identifier + "@");
+    } else {
+      return make_response(`<div style="text-align: center; width: 100%">Invalid input</div>`);
+    }
   }
 
   let key = `${identifier}@${player}`;
   let result = await redis.get(key);
   if (!result) {
     let api_url = "http://129.153.119.220:5111/injustice";
-    let data = {"link": `${majsoul_prefix}${identifier}_${player}`};
+    let data = {"link": input};
     let config = {"headers": {"Content-Type": "application/json"}};
     try {
       const response = await axios.post(api_url, data, config);
-      result = fix_bold_italic(convert_tiles(to_ul(response.data)));
+      result = fix_formatting(convert_tiles(to_ul(response.data)));
       await redis.set(key, result);
     } catch (e) {
       console.error('Error during the request:', e.message);
+      result = `<div style="text-align: center; width: 100%">Error: invalid input, or backend is down</div>`
     }
   }
   return make_response(result);
