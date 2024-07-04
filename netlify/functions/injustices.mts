@@ -68,11 +68,14 @@ export default async (req: Request, context: Context) => {
   let input = "";
   if (player === "_") player = "";
   if (identifier.match(majsoul_id_regex) && (player === "" || player.match(majsoul_player_regex))) {
-    input = `${majsoul_prefix}${identifier}_${player}`;
+    input = majsoul_prefix + identifier;
+    if (player !== "") input += `_${player}`;
   } else if (identifier.match(tenhou_id_regex) && (player === "" || player.match(tenhou_player_regex))) {
-    input = `${tenhou_prefix}${identifier}&tw=${player}`;
+    input = tenhou_prefix + identifier;
+    if (player !== "") input += `&tw=${player}`;
   } else if (identifier.match(riichicity_id_regex) && player !== "") {
-    input = `${identifier}@${player}`;
+    input = identifier;
+    if (player !== "") input += `@${player}`;
   } else {
     if (identifier.match(riichicity_id_regex) && player === "") {
       return make_response(`<div style="text-align: center; width: 100%">Input <b>id@username</b> for Riichi City</div>`, identifier + "@");

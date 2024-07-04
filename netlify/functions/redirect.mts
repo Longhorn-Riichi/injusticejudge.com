@@ -5,7 +5,7 @@ const tenhou_regex = /(\d{10}gm-\d{4}-\d{4}-[0-9a-f]{8})(&tw=\d+)?/;
 const riichicity_regex = /([a-z0-9]{20})(@.*)?/;
 
 function parse_identifier(url: string, username?: string) {
-  let ret = ["", undefined];
+  let ret = ["", ""];
   // TODO make this cleaner
   let match = url.match(majsoul_regex);
   if (match) {
