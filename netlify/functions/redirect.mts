@@ -20,9 +20,9 @@ function parse_identifier(url: string, username: string) {
 
 export default async (req: Request, context: Context) => {
   // unwrap the request
-  const { payload } = await req.json();
-  const url = payload.data.url;
-  const username = payload.data.username;
+  const params = (await req.text()).split("&");
+  const url = params[0].split("=")[1];
+  const username = params[1].split("=")[1];
   let identifier, player, location;
   try {
     [identifier, player] = parse_identifier(url, username);
