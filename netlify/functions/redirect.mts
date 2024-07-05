@@ -12,6 +12,10 @@ function parse_identifier(url: string) {
   throw new Error("Could not parse identifier");
 }
 
+export const config: Config = {
+  path: "/redirect"
+};
+
 export default async (req: Request, context: Context) => {
   // unwrap the request
   const params = (await req.text()).split("&");
