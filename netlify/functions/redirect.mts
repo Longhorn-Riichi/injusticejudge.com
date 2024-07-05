@@ -4,28 +4,10 @@ const majsoul_regex = /(\d{6}-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a
 const tenhou_regex = /(\d{10}gm-\d{4}-\d{4}-[0-9a-f]{8})(&tw=\d+)?/;
 const riichicity_regex = /([a-z0-9]{20})(@.*)?/;
 
-function parse_identifier(url: string, username?: string) {
-  let ret = ["", ""];
-  // TODO make this cleaner
-  let match = url.match(majsoul_regex);
-  if (match) {
-    ret[0] = match[1];
-    if (match.length >= 3 && match[2] !== undefined) ret[1] = match[2].substr(1);
-    return ret;
-  }
-  match = url.match(tenhou_regex);
-  if (match) {
-    ret[0] = match[1];
-    if (match.length >= 3 && match[2] !== undefined) ret[1] = match[2].substr(4);
-    return ret;
-  }
-  match = url.match(riichicity_regex);
-  if (match) {
-    ret[0] = match[1];
-    console.log(match);
-    if (match.length >= 3 && match[2] !== undefined) ret[1] = match[2].substr(1);
-    else ret[1] = username;
-    return ret;
+function parse_identifier(url: string) {
+  for (let r of [majsoul_regex, tenhou_regex, riichicity_regex]) {
+    let match = url.match(r);
+    if (match) return [match[1], (match.length >= 3 && match[2] !== undefined ? match[2].substr(1) : "")];
   }
   throw new Error("Could not parse identifier");
 }
@@ -34,14 +16,15 @@ export default async (req: Request, context: Context) => {
   // unwrap the request
   const params = (await req.text()).split("&");
   const url = decodeURIComponent(params[0].split("=")[1]);
-  const username = decodeURIComponent(params[1].split("=")[1]);
   let identifier, player, location;
-  // console.log(url, username);
+  // console.log(url);
   try {
-    [identifier, player] = parse_identifier(url, username);
+    [identifier, player] = parse_identifier(url);
     if (player === "") player = "_";
+    else if (player.startsWith("tw=")) player = player.substr(3);
     location = `/${encodeURIComponent(identifier)}/${encodeURIComponent(player)}`;
   } catch (e) {
+    console.error(e)
     location = "/invalid/input";
   }
   // send data to function
