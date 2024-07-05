@@ -84,7 +84,10 @@ input:focus { border-color: $background-color; }
   border: none;
   background-color: white;
   cursor: help;
+  opacity: 0.1;
+  transition: opacity ease-in 0.1s;
 }
+.main-input ~ .help:hover { opacity: 1; }
 .main-input ~ .help ~ .help-popup {
   position: absolute;
   top: 150%;

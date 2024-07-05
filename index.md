@@ -9,13 +9,13 @@ layout: default
 <form method="POST" action="/redirect" name="main-form" style="flex: 1; display: flex; flex-direction: column">
   <span class="input-popout"></span>
   <div class="input-bar">
-    <input placeholder="Mahjong Soul/tenhou.net replay URL, or Riichi City replay ID" name="url" class="main-input" id="main-input" value=""/>
+    <input placeholder="Mahjong Soul/tenhou.net replay URL, or Riichi City replay ID" data-1p-ignore name="url" class="main-input" id="main-input" value=""/>
     <input type="checkbox" id="help"/>
     <label for="help" class="help"></label>
     <div class="help-popup">
       Examples:
       <ul>
-        <li><a href="#" onclick="main_input.value = this.innerText; toggle_popouts(); return false;">https://mahjongsoul.game.yo-star.com/?paipu=231120-56ad894e-c2f0-4806-87c3-4d11966d8cc3</a></li>
+        <li><a href="#" onclick="main_input.value = this.innerText; toggle_popouts(); return false;">https://mahjongsoul.game.yo-star.com/?paipu=231120-56ad894e-c2f0-4806-87c3-4d11966d8cc3_a878583980</a></li>
         <li><a href="#" onclick="main_input.value = this.innerText; toggle_popouts(); return false;">https://tenhou.net/0/?log=2023081915gm-0089-0000-0f655b26&tw=3</a></li>
         <li><a href="#" onclick="main_input.value = this.innerText; toggle_popouts(); return false;">cmbem26ai08d9bg1ipog@1</a></li>
       </ul>

@@ -1,6 +1,6 @@
 import type { Context } from "@netlify/functions";
 
-const majsoul_regex = /([a-z0-9]{6}-[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12})(_a\d+)?(_[0-3]?)/;
+const majsoul_regex = /([a-z0-9]{6}-[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12})(_a\d+)?(_[0-3])?/;
 const tenhou_regex = /(\d{10}gm-\d{4}-\d{4}-[0-9a-f]{8})(&tw=\d+)?/;
 const riichicity_regex = /([a-z0-9]{20})(@.*)?/;
 
