@@ -35,38 +35,48 @@ input:focus {
   cursor: pointer;
 }
 
-.input-popout, .input-popout::before {
-  border: 0.2rem solid lightgray;
-  border-radius: 0.2rem 0.2rem 0px 0px;
-  background-color: lightgray;
-  height: 100%;
+.input-popout::before {
+  content: "";
+  transform: scaleY(100%);
+  width: 10rem;
+  height: 1.6rem;
   text-align: left;
-  margin: 0 1rem;
+  padding-left: 0.2rem;
+  background-color: lightgray;
 }
 .input-popout {
   position: relative;
   align-self: start;
-  z-index: 1;
+  padding-left: 1rem;
   transform: scaleY(0%);
 }
-.input-popout.active {
-  transition: transform ease-in 0.1s;
-  transform: scaleY(100%);
-}
+.input-popout.majsoul:first-child,
+.input-popout.tenhou:first-child,
+.input-popout.riichicity:first-child { transform: scaleY(100%); }
+
+.input-popout.majsoul:first-child::before { content: "Mahjong Soul"; }
+.input-popout.tenhou:first-child::before  { content: "tenhou.net"; }
+.input-popout.riichicity:first-child::before  { content: "Riichi City"; }
+
 .input-popout:first-child { transform-origin: bottom; }
 .input-popout:last-child { transform-origin: top; }
-.input-popout::before {
-  width: 2rem;
+.input-popout::after {
   content: "";
+  box-sizing: border-box;
+  border: 0.2rem solid lightgray;
+  border-radius: 0.2rem 0.2rem 0px 0px;
+  background-color: lightgray;
+  width: 2rem;
+  height: 1.6rem;
   position: absolute;
   margin: 0;
   padding: 0;
   left: calc(100% - 1rem);
-  top: -0.2rem;
   z-index: -1;
 }
-.input-popout:first-child::before { transform: skewX(45deg); }
-.input-popout:last-child::before { transform: skewX(-45deg); }
+.input-popout:first-child::after { transform: skewX(45deg); }
+.input-popout:last-child::after { transform: skewX(-45deg); }
+
 
 .tile {
   display: inline-block;
