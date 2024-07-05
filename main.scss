@@ -3,16 +3,47 @@
 ---
 @charset "utf-8";
 
-$text-color:       #4a4a4f;
-$background-color: #f1f1f1;
+$text-color:       #414A5E;
+$background-color: #EEEDEB;
+$item-color:       #87A6B8;
+$item-text-color:  #FFFFFF;
 /* TODO: background with tiles */
 
 html, body, main {
   width: 100%;
+  margin: 0;
   background-color: $background-color;
+  color: $text-color;
   font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
   font-weight: normal;
-  color: $text-color;
+  position: relative;
+}
+body::after {
+  content: "";
+  display: block;
+  background-image: url(./game.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  width: 100%;
+  height: 16rem;
+}
+
+a.github {
+  position: absolute;
+  bottom: -16rem;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
+}
+
+div.input-bar {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  padding: 0 1rem;
 }
 
 input:focus {
@@ -20,19 +51,68 @@ input:focus {
 }
 
 .main-input {
-  flex: 8;
+  flex: 7;
+  height: 1.5rem;
   padding: 0.5rem 0 0.5rem 0.5rem;
   border: 1px solid #bbb;
   border-right-width: 0;
   border-radius: 0.2rem 0 0 0.2rem;
   z-index: 2;
+  position: relative;
 }
-.main-input + button {
+
+.main-input ~ input[type="checkbox"]#help { display: none; }
+.main-input ~ .help {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  right: calc(18.75% + 0.5rem);
+  z-index: 3;
+  background-image: url(./help.svg);
+  background-size: cover;
+  border: none;
+  background-color: white;
+  cursor: help;
+}
+.main-input ~ .help ~ .help-popup {
+  position: absolute;
+  top: 150%;
+  z-index: -1;
+  width: calc(80% - 1rem);
+  height: fit-contents;
+  background-color: $item-color;
+  color: $item-text-color;
+  border-radius: 0.5rem;
+  text-align: left;
+  padding: 0.5rem;
+  opacity: 0;
+  transition: opacity ease-in 0.1s, z-index linear 0.5s;
+}
+.main-input ~ .help:hover ~ .help-popup,
+.main-input ~ input[type="checkbox"]#help:checked ~ .help-popup,
+.main-input ~ .help-popup:hover { opacity: 1; z-index: 3 }
+.main-input ~ .help ~ .help-popup:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 95%;
+  right: 0.75rem;
+  border-left: 1rem solid transparent;
+  border-right: 1rem solid transparent;
+  border-bottom: 2rem solid $item-color;
+  border-radius: 0.5rem;
+}
+.main-input ~ button[type="submit"] {
   flex: 1;
   padding: 0.5rem 1rem;
   border: 1px solid #bbb;
   border-radius: 0 0.2rem 0.2rem 0;
   cursor: pointer;
+  background-color: $item-color;
+  color: $item-text-color;
 }
 
 .input-popout::before {
@@ -77,7 +157,6 @@ input:focus {
 .input-popout:first-child::after { transform: skewX(45deg); }
 .input-popout:last-child::after { transform: skewX(-45deg); }
 
-
 .tile {
   display: inline-block;
   width: 0.75em;
@@ -101,9 +180,20 @@ input:focus {
   }
 }
 
+.result-header {
+  font-size: 75%;
+}
+.result-header ~ hr {
+  margin: 0;
+}
 .result {
+  margin-top: 2rem;
   text-align: left;
   font-size: 150%;
+  padding: 0 1rem;
+}
+.result > ul {
+  margin-top: 0.5rem;
 }
 
 
