@@ -130,7 +130,8 @@ input:focus { border-color: $background-color; }
   height: 1.6rem;
   text-align: left;
   padding-left: 0.2rem;
-  background-color: lightgray;
+  background-color: $item-color;
+  color: $item-text-color;
 }
 .input-popout {
   position: relative;
@@ -149,9 +150,9 @@ input:focus { border-color: $background-color; }
 .input-popout::after {
   content: "";
   box-sizing: border-box;
-  border: 0.2rem solid lightgray;
+  border: 0.2rem solid $item-color;
   border-radius: 0.2rem 0.2rem 0px 0px;
-  background-color: lightgray;
+  background-color: $item-color;
   width: 2rem;
   height: 1.6rem;
   position: absolute;
