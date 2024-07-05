@@ -7,7 +7,9 @@ const riichicity_regex = /([a-z0-9]{20})(@.*)?/;
 function parse_identifier(url: string) {
   for (let r of [majsoul_regex, tenhou_regex, riichicity_regex]) {
     let match = url.match(r);
-    if (match) return [match[1], (match.length >= 3 && match.at(-1) !== undefined ? match.at(-1).substr(1) : "")];
+    if (match) return [match[1],
+      (match.length >= 4 && match[3] !== undefined ? match[3].substr(1) :
+      (match.length >= 3 && match[2] !== undefined ? match[2].substr(1) : ""))];
   }
   throw new Error("Could not parse identifier");
 }
@@ -21,7 +23,6 @@ export default async (req: Request, context: Context) => {
   const params = (await req.text()).split("&");
   const url = decodeURIComponent(params[0].split("=")[1]);
   let identifier, player, location;
-  // console.log(url);
   try {
     [identifier, player] = parse_identifier(url);
     if (player === "") player = "_";
