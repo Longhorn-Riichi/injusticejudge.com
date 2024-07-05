@@ -10,8 +10,8 @@ const redis = new Redis({
   token: Netlify.env.get("UPSTASH_REDIS_REST_TOKEN"),
 });
 
-const majsoul_id_regex = /^\d{6}-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/
-const majsoul_player_regex = /^a\d+$/
+const majsoul_id_regex = /^[a-z0-9]{6}-[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/
+const majsoul_player_regex = /^a\d+(_[0-3]?)|[0-3]$/
 const tenhou_id_regex = /^\d{10}gm-\d{4}-\d{4}-[0-9a-f]{8}$/;
 const tenhou_player_regex = /^\d+$/;
 const riichicity_id_regex = /^[a-z0-9]{20}$/;
@@ -19,6 +19,8 @@ const riichicity_player_regex = /^@\d$/;
 
 const majsoul_prefix = "https://mahjongsoul.game.yo-star.com/?paipu=";
 const tenhou_prefix = "https://tenhou.net/0/?log=";
+
+const default_result = "No injustices detected. Did we miss an injustice? Contribute ideas <a href='https://github.com/Longhorn-Riichi/InjusticeJudge/issues/1'>here</a>!";
 
 function to_ul(s: string[]) {
   let ret = "";
@@ -48,6 +50,7 @@ function fix_formatting(s: string) {
 }
 
 function make_response(result: string, prefill?: string) {
+  if (result == "") result = default_result;
   let body = fs.readFileSync(process.cwd() + "/_site/index.html", "utf8")
                .replace(/<div class="result"><\/div>/, `<div class="result">${result}</div>`);
   if (prefill) body = body.replace(/value=""/, `value="${prefill}"`);
