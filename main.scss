@@ -7,7 +7,8 @@ $text-color:       #414A5E;
 $background-color: #EEEDEB;
 $item-color:       #87A6B8;
 $item-text-color:  #FFFFFF;
-/* TODO: background with tiles */
+
+/* main organization */
 
 html, body, main {
   width: 100%;
@@ -28,7 +29,6 @@ body::after {
   width: 100%;
   height: 16rem;
 }
-
 a.github {
   position: absolute;
   bottom: -16rem;
@@ -38,6 +38,8 @@ a.github {
   width: fit-content;
 }
 
+/* input bar */
+
 div.input-bar {
   flex: 1;
   position: relative;
@@ -45,11 +47,7 @@ div.input-bar {
   flex-direction: row;
   padding: 0 1rem;
 }
-
-input:focus {
-  border-color: $background-color;
-}
-
+input:focus { border-color: $background-color; }
 .main-input {
   flex: 7;
   height: 1.5rem;
@@ -60,6 +58,17 @@ input:focus {
   z-index: 2;
   position: relative;
 }
+.main-input ~ button[type="submit"] {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border: 1px solid #bbb;
+  border-radius: 0 0.2rem 0.2rem 0;
+  cursor: pointer;
+  background-color: $item-color;
+  color: $item-text-color;
+}
+
+/* help popup */
 
 .main-input ~ input[type="checkbox"]#help { display: none; }
 .main-input ~ .help {
@@ -90,6 +99,9 @@ input:focus {
   opacity: 0;
   transition: opacity ease-in 0.1s, z-index linear 0.5s;
 }
+.main-input ~ .help ~ .help-popup a {
+  color: $item-text-color;
+}
 .main-input ~ .help:hover ~ .help-popup,
 .main-input ~ input[type="checkbox"]#help:checked ~ .help-popup,
 .main-input ~ .help-popup:hover { opacity: 1; z-index: 3 }
@@ -105,15 +117,8 @@ input:focus {
   border-bottom: 2rem solid $item-color;
   border-radius: 0.5rem;
 }
-.main-input ~ button[type="submit"] {
-  flex: 1;
-  padding: 0.5rem 1rem;
-  border: 1px solid #bbb;
-  border-radius: 0 0.2rem 0.2rem 0;
-  cursor: pointer;
-  background-color: $item-color;
-  color: $item-text-color;
-}
+
+/* popouts */
 
 .input-popout::before {
   content: "";
@@ -133,11 +138,9 @@ input:focus {
 .input-popout.majsoul:first-child,
 .input-popout.tenhou:first-child,
 .input-popout.riichicity:first-child { transform: scaleY(100%); }
-
 .input-popout.majsoul:first-child::before { content: "Mahjong Soul"; }
 .input-popout.tenhou:first-child::before  { content: "tenhou.net"; }
 .input-popout.riichicity:first-child::before  { content: "Riichi City"; }
-
 .input-popout:first-child { transform-origin: bottom; }
 .input-popout:last-child { transform-origin: top; }
 .input-popout::after {
@@ -157,6 +160,23 @@ input:focus {
 .input-popout:first-child::after { transform: skewX(45deg); }
 .input-popout:last-child::after { transform: skewX(-45deg); }
 
+/* results */
+
+.result-header {
+  font-size: 75%;
+}
+.result-header ~ hr {
+  margin: 0;
+}
+.result {
+  margin-top: 2rem;
+  text-align: left;
+  font-size: 150%;
+  padding: 0 1rem;
+}
+.result > ul {
+  margin-top: 0.5rem;
+}
 .tile {
   display: inline-block;
   width: 0.75em;
@@ -179,54 +199,3 @@ input:focus {
     transform: translateX(-1em) translateY(-0.5em);
   }
 }
-
-.result-header {
-  font-size: 75%;
-}
-.result-header ~ hr {
-  margin: 0;
-}
-.result {
-  margin-top: 2rem;
-  text-align: left;
-  font-size: 150%;
-  padding: 0 1rem;
-}
-.result > ul {
-  margin-top: 0.5rem;
-}
-
-
-
-
-
-
-
-// // Our variables
-// $base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-// $base-font-size:   16px;
-// $base-font-weight: 400;
-// $small-font-size:  $base-font-size * 0.875;
-// $base-line-height: 1.5;
-// 
-// $spacing-unit:     30px;
-// 
-// $text-color:       #111;
-// $background-color: #fdfdfd;
-// $brand-color:      #2a7ae2;
-// 
-// $grey-color:       #828282;
-// $grey-color-light: lighten($grey-color, 40%);
-// $grey-color-dark:  darken($grey-color, 25%);
-// 
-// // Width of the content area
-// $content-width:    800px;
-// 
-// $on-palm:          600px;
-// $on-laptop:        800px;
-// 
-// @mixin media-query($device) {
-//     @media screen and (max-width: $device) {
-//         @content;
-//     }
-// }
