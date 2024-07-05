@@ -20,13 +20,12 @@ const riichicity_player_regex = /^@\d$/;
 const majsoul_prefix = "https://mahjongsoul.game.yo-star.com/?paipu=";
 const tenhou_prefix = "https://tenhou.net/0/?log=";
 
-const default_result = "No injustices detected. Did we miss an injustice? Contribute ideas <a href='https://github.com/Longhorn-Riichi/InjusticeJudge/issues/1'>here</a>!";
+const default_result = "<div style='text-align: center; width: 100%'>No injustices detected.<br/>Did we miss an injustice? Contribute ideas <a href='https://github.com/Longhorn-Riichi/InjusticeJudge/issues/1'>here</a>!</div>";
 
 function to_ul(s: string[]) {
   let ret = "";
   for (const line of s) ret += `<li>${line.substr(2)}</li>`;
   return `<ul>${ret}</ul>`;
-  // TODO return something if there are no results
 }
 
 const normal_tiles = ["0m", "1m", "2m", "3m", "4m", "5m", "6m", "7m", "8m", "9m", "0p", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "0s", "1s", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "1z", "2z", "3z", "4z", "5z", "6z", "7z", "1x"];
@@ -50,7 +49,8 @@ function fix_formatting(s: string) {
 }
 
 function make_response(result: string, prefill?: string) {
-  if (result == "") result = default_result;
+  console.log(result)
+  if (result == "" || result == "<ul></ul>") result = default_result;
   let body = fs.readFileSync(process.cwd() + "/_site/index.html", "utf8")
                .replace(/<div class="result"><\/div>/, `<div class="result">${result}</div>`);
   if (prefill) body = body.replace(/value=""/, `value="${prefill}"`);
