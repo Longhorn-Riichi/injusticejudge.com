@@ -16,8 +16,8 @@ layout: default
       Examples:
       <ul>
         <li><a href="#" onclick="main_input.value = this.innerText; toggle_popouts(); return false;">https://mahjongsoul.game.yo-star.com/?paipu=230822-7e07ccdb-9bb9-4957-8746-74cbf49501ca_a939260192</a></li>
-        <li><a href="#" onclick="main_input.value = this.innerText; toggle_popouts(); return false;">https://tenhou.net/0/?log=2023081915gm-0089-0000-0f655b26&tw=3</a></li>
-        <li><a href="#" onclick="main_input.value = this.innerText; toggle_popouts(); return false;">cmbem26ai08d9bg1ipog@1</a></li>
+        <li><a href="#" onclick="main_input.value = this.innerText; toggle_popouts(); return false;">https://tenhou.net/3/?log=2024042807gm-0089-0000-72083cfc&tw=0</a></li>
+        <li><a href="#" onclick="main_input.value = this.innerText; toggle_popouts(); return false;">cmon7d6ai08d9bi5k8l0@0</a></li>
       </ul>
     </div>
     <button type="submit" id="main-button">Submit</button>

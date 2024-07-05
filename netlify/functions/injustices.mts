@@ -49,7 +49,7 @@ function fix_formatting(s: string) {
 }
 
 function make_response(result: string, prefill?: string) {
-  if (result == "" || result == "<ul></ul>") result = default_result;
+  if (result === "" || result === "<ul></ul>") result = default_result;
   const header = "<span class='result-header'>Results:</span><hr/>";
   let body = fs.readFileSync(process.cwd() + "/_site/index.html", "utf8")
                .replace(/<div class="result"><\/div>/, `<div class="result">${header}${result}</div>`);
