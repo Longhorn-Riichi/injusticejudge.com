@@ -87,7 +87,8 @@ input:focus { border-color: $background-color; }
   opacity: 0.1;
   transition: opacity ease-in 0.1s;
 }
-.main-input ~ .help:hover { opacity: 1; }
+.main-input ~ .help:hover,
+.main-input ~ input[type="checkbox"]#help:checked ~ .help { opacity: 1; }
 .main-input ~ .help ~ .help-popup {
   position: absolute;
   top: 150%;
@@ -96,6 +97,7 @@ input:focus { border-color: $background-color; }
   height: fit-contents;
   background-color: $item-color;
   color: $item-text-color;
+  word-break: break-all;
   border-radius: 0.5rem;
   text-align: left;
   padding: 0.5rem;
