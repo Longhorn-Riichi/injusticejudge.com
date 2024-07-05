@@ -15,8 +15,10 @@ layout: default
     <div class="help-popup">
       Examples:
       <ul>
-        <li><a href="#" onclick="main_input.value = this.innerText; toggle_popouts(); return false;"></a></li>
-        <li><a href="#" onclick="main_input.value = this.innerText; toggle_popouts(); return false;">http://tenhou.net/0/?log=2023121909gm-000b-18940-d853a264&tw=3</a></li>
+        <li><a href="#" onclick="main_input.value = this.innerText; toggle_popouts(); return false;">https://mahjongsoul.game.yo-star.com/?paipu=220930-8a7c1e7f-2114-46f9-80d4-208067ef0385_a939260192</a></li>
+        <li><a href="#" onclick="main_input.value = this.innerText; toggle_popouts(); return false;">https://mahjongsoul.game.yo-star.com/?paipu=230822-7e07ccdb-9bb9-4957-8746-74cbf49501ca_a939260192</a></li>
+        <li><a href="#" onclick="main_input.value = this.innerText; toggle_popouts(); return false;">https://tenhou.net/0/?log=2023121909gm-000b-18940-d853a264&tw=3</a></li>
+        <li><a href="#" onclick="main_input.value = this.innerText; toggle_popouts(); return false;">https://tenhou.net/3/?log=2023081915gm-0089-0000-0f655b26&tw=3</a></li>
         <li><a href="#" onclick="main_input.value = this.innerText; toggle_popouts(); return false;">cmon7d6ai08d9bi5k8l0@0</a></li>
       </ul>
     </div>
