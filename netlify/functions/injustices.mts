@@ -12,7 +12,7 @@ const redis = new Redis({
 
 const majsoul_id_regex = /^[a-z0-9]{6}-[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/
 const majsoul_player_regex = /^a\d+(_[0-3])?|[0-3]$/
-const tenhou_id_regex = /^\d{10}gm-\d{4}-\d{4}-[0-9a-f]{8}$/;
+const tenhou_id_regex = /^\d{10}gm-\d{4}-\d{4,}-[0-9a-f]{8}$/;
 const tenhou_player_regex = /^\d+$/;
 const riichicity_id_regex = /^[a-z0-9]{20}$/;
 const riichicity_player_regex = /^@\d$/;
