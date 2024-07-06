@@ -34,3 +34,20 @@ export function to_ul(s: string[]) {
   for (const item of s) ret += `<li>${item}</li>`;
   return `<ul>${ret}</ul>`;
 }
+
+const wisdoms = [
+  "always kan",
+  "bad waits win games",
+  "but it was safe last turn",
+  "this was just a practice game",
+  "never not riichi",
+  "should've folded",
+  "should've pushed",
+  "shouldn't have called",
+  "shouldn't have changed waits",
+  "that's mahjong for you",
+]
+
+export function get_wisdom() {
+  return wisdoms[Math.floor(Math.random() * wisdoms.length)];
+}

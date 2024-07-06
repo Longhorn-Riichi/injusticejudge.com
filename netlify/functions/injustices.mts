@@ -3,7 +3,7 @@ import { Redis } from "@upstash/redis"
 import fs from "node:fs";
 import process from "node:process";
 import axios from "axios";
-import { key_to_input, to_ul } from "./util.mts";
+import { get_wisdom, key_to_input, to_ul } from "./util.mts";
 
 const redis = new Redis({
   url: Netlify.env.get("REDIS_ENDPOINT"),
@@ -36,7 +36,8 @@ function make_response(result: string, prefill?: string) {
   if (result === "" || result === "<ul></ul>") result = default_result;
   const header = "<span class='result-header'>Results:</span><hr/>";
   let body = fs.readFileSync(process.cwd() + "/_site/index.html", "utf8")
-               .replace(/<div class="result"><\/div>/, `<div class="result">${header}${result}</div>`);
+               .replace(/<div class="result"><\/div>/, `<div class="result">${header}${result}</div>`)
+               .replace(/<footer>/, `<footer><small>${get_wisdom()}</small><br/>`);
   if (prefill) body = body.replace(/value=""/, `value="${prefill}"`);
   return new Response(body, {
     "status": 302,
