@@ -57,7 +57,7 @@ export const config: Config = {
 };
 
 export default async (req: Request, context: Context) => {
-  let inputs = await random_inputs(5);
+  let inputs = await random_inputs(3);
   let result = to_ul(inputs.map(i => `<a href="#" onclick="main_input.value = this.innerText; toggle_popouts(); return false;">${i}</a>`));
   const header = "<span class='result-header'>Recent queries:</span><hr/>";
   let body = fs.readFileSync(process.cwd() + "/_site/index.html", "utf8")
