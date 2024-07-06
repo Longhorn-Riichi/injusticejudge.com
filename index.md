@@ -33,7 +33,7 @@ layout: default
 
 <div class="result"></div>
 
-<a class="github" href="https://github.com/Longhorn-Riichi/InjusticeJudge">Github</a>
+<footer><a class="github" href="https://github.com/Longhorn-Riichi/InjusticeJudge">Github</a></footer>
 
 
 
