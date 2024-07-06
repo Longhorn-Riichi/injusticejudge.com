@@ -1,32 +1,16 @@
 import type { Config, Context, Netlify } from "@netlify/functions";
-import { Redis } from '@upstash/redis'
-import fs from 'node:fs';
-import process from 'node:process';
-import axios from 'axios';
-import util from 'node:util';
+import { Redis } from "@upstash/redis"
+import fs from "node:fs";
+import process from "node:process";
+import axios from "axios";
+import { key_to_input, to_ul } from "./util.mts";
 
 const redis = new Redis({
   url: Netlify.env.get("REDIS_ENDPOINT"),
   token: Netlify.env.get("UPSTASH_REDIS_REST_TOKEN"),
 });
 
-const majsoul_id_regex = /^[a-z0-9]{6}-[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/
-const majsoul_player_regex = /^a\d+(_[0-3])?|[0-3]$/
-const tenhou_id_regex = /^\d{10}gm-[0-9a-f]{4}-\d{4,}-[0-9a-f]{8}$/;
-const tenhou_player_regex = /^\d+$/;
-const riichicity_id_regex = /^[a-z0-9]{20}$/;
-const riichicity_player_regex = /^@\d$/;
-
-const majsoul_prefix = "https://mahjongsoul.game.yo-star.com/?paipu=";
-const tenhou_prefix = "https://tenhou.net/0/?log=";
-
 const default_result = "<div style='text-align: center; width: 100%'>No injustices detected.<br/>Did we miss an injustice? Contribute ideas <a href='https://github.com/Longhorn-Riichi/InjusticeJudge/issues/1'>here</a>!</div>";
-
-function to_ul(s: string[]) {
-  let ret = "";
-  for (const line of s) ret += `<li>${line.substr(2)}</li>`;
-  return `<ul>${ret}</ul>`;
-}
 
 const normal_tiles = ["0m", "1m", "2m", "3m", "4m", "5m", "6m", "7m", "8m", "9m", "0p", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "0s", "1s", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "1z", "2z", "3z", "4z", "5z", "6z", "7z", "1x"];
 const normal_dora_tiles = ["0md", "1md", "2md", "3md", "4md", "5md", "6md", "7md", "8md", "9md", "0pd", "1pd", "2pd", "3pd", "4pd", "5pd", "6pd", "7pd", "8pd", "9pd", "0sd", "1sd", "2sd", "3sd", "4sd", "5sd", "6sd", "7sd", "8sd", "9sd", "1zd", "2zd", "3zd", "4zd", "5zd", "6zd", "7zd", "1xd"];
@@ -68,26 +52,14 @@ export default async (req: Request, context: Context) => {
   // unwrap the request, if any
   const identifier = decodeURIComponent(context.params.identifier);
   let player = decodeURIComponent(context.params.player);
-  let input = "";
-  if (player === "_") player = "";
-  if (identifier.match(majsoul_id_regex) && (player === "" || player.match(majsoul_player_regex))) {
-    input = majsoul_prefix + identifier;
-    if (player !== "") input += `_${player}`;
-  } else if (identifier.match(tenhou_id_regex) && (player === "" || player.match(tenhou_player_regex))) {
-    input = tenhou_prefix + identifier;
-    if (player !== "") input += `&tw=${player}`;
-  } else if (identifier.match(riichicity_id_regex) && player !== "") {
-    input = identifier;
-    if (player !== "") input += `@${player}`;
-  } else {
-    if (identifier.match(riichicity_id_regex) && player === "") {
-      return make_response(`<div style="text-align: center; width: 100%">Input <b>id@username</b> for Riichi City</div>`, identifier + "@");
-    } else {
-      return make_response(`<div style="text-align: center; width: 100%">Invalid input</div>`);
-    }
-  }
-
   let key = `${identifier}@${player}`;
+  let input;
+  try {
+    input = key_to_input(key);
+  } catch (e) {
+    console.error(e);
+    return make_response(`<div style="text-align: center; width: 100%">Invalid input</div>`);
+  }
   let result = await redis.get(key);
   if (!result) {
     let api_url = "http://129.153.119.220:5111/injustice";
@@ -95,7 +67,7 @@ export default async (req: Request, context: Context) => {
     let config = {"headers": {"Content-Type": "application/json"}};
     try {
       const response = await axios.post(api_url, data, config);
-      result = fix_formatting(convert_tiles(to_ul(response.data)));
+      result = fix_formatting(convert_tiles(to_ul(response.data.map(i => i.substr(2)))));
       await redis.set(key, result);
     } catch (e) {
       console.error('Error during the request:', e.message);

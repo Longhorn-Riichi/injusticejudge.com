@@ -2,7 +2,7 @@
 layout: default
 ---
 
-# {{ site.title }}
+# <a href="/">{{ site.title }}</a>
 
 ### {{ site.subtitle }}
 
