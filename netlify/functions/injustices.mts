@@ -65,7 +65,6 @@ export default async (req: Request, context: Context) => {
   if (!result) {
     let api_host = Netlify.env.get("INJUSTICEJUDGE_ENDPOINT");
     let api_url = `http://${api_host}/injustice`;
-    console.log(api_url);
     let data = {"link": input};
     let config = {"headers": {"Content-Type": "application/json"}, "timeout": 5000};
     try {
