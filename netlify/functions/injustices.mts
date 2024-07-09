@@ -65,7 +65,7 @@ export default async (req: Request, context: Context) => {
   if (!result) {
     let api_url = Netlify.env.get("INJUSTICEJUDGE_ENDPOINT");
     let data = {"link": input};
-    let config = {"headers": {"Content-Type": "application/json"}};
+    let config = {"headers": {"Content-Type": "application/json"}, "timeout": 8000};
     try {
       const response = await axios.post(api_url, data, config);
       result = fix_formatting(convert_tiles(to_ul(response.data.map(i => i.substr(2)))));
