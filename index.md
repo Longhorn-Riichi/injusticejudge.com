@@ -2,10 +2,6 @@
 layout: default
 ---
 
-# <a href="/">{{ site.title }}</a>
-
-### {{ site.subtitle }}
-
 <form method="POST" action="/redirect" name="main-form" style="flex: 1; display: flex; flex-direction: column">
   <span class="input-popout"></span>
   <div class="input-bar">
@@ -32,18 +28,6 @@ layout: default
 </form>
 
 <div class="result"></div>
-
-<footer><a class="github" href="https://github.com/Longhorn-Riichi/InjusticeJudge">Github</a></footer>
-
-
-
-
-
-
-
-
-
-
 
 
 

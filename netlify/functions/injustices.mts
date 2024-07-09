@@ -10,7 +10,7 @@ const redis = new Redis({
   token: Netlify.env.get("UPSTASH_REDIS_REST_TOKEN"),
 });
 
-const default_result = "<div style='text-align: center; width: 100%'>No injustices detected.<br/>Did we miss an injustice? Contribute ideas <a href='https://github.com/Longhorn-Riichi/InjusticeJudge/issues/1'>here</a>!</div>";
+const default_result = "<br/><div style='text-align: center; width: 100%'>No injustices detected.<br/>Did we miss an injustice? Contribute ideas <a href='https://github.com/Longhorn-Riichi/InjusticeJudge/issues/1'>here</a>!</div>";
 
 const normal_tiles = ["0m", "1m", "2m", "3m", "4m", "5m", "6m", "7m", "8m", "9m", "0p", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "0s", "1s", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "1z", "2z", "3z", "4z", "5z", "6z", "7z", "1x"];
 const normal_dora_tiles = ["0md", "1md", "2md", "3md", "4md", "5md", "6md", "7md", "8md", "9md", "0pd", "1pd", "2pd", "3pd", "4pd", "5pd", "6pd", "7pd", "8pd", "9pd", "0sd", "1sd", "2sd", "3sd", "4sd", "5sd", "6sd", "7sd", "8sd", "9sd", "1zd", "2zd", "3zd", "4zd", "5zd", "6zd", "7zd", "1xd"];

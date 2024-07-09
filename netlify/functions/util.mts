@@ -35,6 +35,12 @@ export function to_ul(s: string[]) {
   return `<ul>${ret}</ul>`;
 }
 
+export function to_table(s: string[]) {
+  let ret = "";
+  for (const item of s) ret += `<tr>${item}</tr>`;
+  return `<table><tbody>${ret}</tbody></table>`;
+}
+
 const wisdoms = [
   "always kan",
   "bad waits win games",
