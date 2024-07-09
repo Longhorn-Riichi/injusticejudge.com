@@ -63,7 +63,7 @@ export default async (req: Request, context: Context) => {
   }
   let result = await redis.get(key);
   if (!result) {
-    let api_url = "http://129.153.119.220:5111/injustice";
+    let api_url = Netlify.env.get("INJUSTICEJUDGE_ENDPOINT");
     let data = {"link": input};
     let config = {"headers": {"Content-Type": "application/json"}};
     try {
