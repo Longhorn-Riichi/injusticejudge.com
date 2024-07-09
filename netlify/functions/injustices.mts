@@ -63,9 +63,11 @@ export default async (req: Request, context: Context) => {
   }
   let result = await redis.get(key);
   if (!result) {
-    let api_url = Netlify.env.get("INJUSTICEJUDGE_ENDPOINT");
+    let api_host = Netlify.env.get("INJUSTICEJUDGE_ENDPOINT");
+    let api_url = `http://${api_host}/injustice`;
+    console.log(api_url);
     let data = {"link": input};
-    let config = {"headers": {"Content-Type": "application/json"}, "timeout": 8000};
+    let config = {"headers": {"Content-Type": "application/json"}, "timeout": 5000};
     try {
       const response = await axios.post(api_url, data, config);
       result = fix_formatting(convert_tiles(to_ul(response.data.map(i => i.substr(2)))));
