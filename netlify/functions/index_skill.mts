@@ -9,8 +9,9 @@ export const config: Config = {
 
 export default async (req: Request, context: Context) => {
   let body = fs.readFileSync(process.cwd() + "/_site/skill.html", "utf8")
-               .replace(/<footer>/, `<footer><small>${get_wisdom()}</small><br/>`);
-
+               .replace(/<footer>/, `<footer><small>${get_wisdom()}</small><br/>`)
+               .replace("injustices suffered", "displays of true skill")
+               .replace("<a href=\"/skill\">Skills</a>", "<a href=\"/\">Injustices</a>");
   return new Response(body, {
     "status": 302,
     "headers": {"Content-Type": "text/html"}

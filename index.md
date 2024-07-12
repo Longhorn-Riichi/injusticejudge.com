@@ -2,11 +2,6 @@
 layout: default
 ---
 
-<header>
-  <h1><a href="/">{{ site.title }}</a></h1>
-  <h3>Validate injustices suffered in Mahjong Soul/tenhou.net/Riichi City</h3>
-</header>
-
 <form method="POST" action="/redirect" name="main-form" style="flex: 1; display: flex; flex-direction: column">
   <span class="input-popout"></span>
   <div class="input-bar">
@@ -78,16 +73,3 @@ toggle_popouts();
 
 main_button.addEventListener("click", e => {main_button.innerText = "Loading...";});
 </script>
-
-<style>
-body::after {
-  content: "";
-  display: block;
-  background-image: url(/game.svg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: bottom;
-  width: 100%;
-  height: 16rem;
-}
-</style>
