@@ -1,34 +1,3 @@
-
-const majsoul_id_regex = /^[a-z0-9]{6}-[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/
-const majsoul_player_regex = /^a\d+(_[0-3])?|[0-3]$/
-const tenhou_id_regex = /^\d{10}gm-[0-9a-f]{4}-\d{4,}-[0-9a-f]{8}$/;
-const tenhou_player_regex = /^\d+$/;
-const riichicity_id_regex = /^[a-z0-9]{20}$/;
-// const riichicity_player_regex = /^@\d$/;
-
-const majsoul_prefix = "https://mahjongsoul.game.yo-star.com/?paipu=";
-const tenhou_prefix = "https://tenhou.net/0/?log=";
-
-export function key_to_input(key: string) {
-  let [identifier, player] = key.split("@", 2);
-  let input = "";
-  if (player === "_") player = "";
-  if (identifier.match(majsoul_id_regex) && (player === "" || player.match(majsoul_player_regex))) {
-    input = majsoul_prefix + identifier;
-    if (player !== "") input += `_${player}`;
-  } else if (identifier.match(tenhou_id_regex) && (player === "" || player.match(tenhou_player_regex))) {
-    input = tenhou_prefix + identifier;
-    if (player !== "") input += `&tw=${player}`;
-  } else if (identifier.match(riichicity_id_regex)) {
-    input = identifier;
-    if (player !== "") input += `@${player}`;
-  } else {
-    console.error("key_to_input failed");
-    throw new Error("Invalid input");
-  }
-  return input;
-}
-
 export function to_ul(s: string[]) {
   let ret = "";
   for (const item of s) ret += `<li>${item}</li>`;
@@ -47,15 +16,15 @@ const wisdoms = [
   "but i had 8 dora",
   "but they had a worse wait",
   "couldn't win a single game",
+  "couldn't win a single hand",
   "game is rigged man",
   "how do i defend against dama",
   "i dealt in on purpose",
   "it was just a practice game",
   "it was safe last turn though",
   "luck-based game",
-  "my draws were bad",
+  "my draws were so bad",
   "never not riichi",
-  "never won a single hand",
   "should have won that hand",
   "should've folded",
   "should've just drawn better tiles",
@@ -78,4 +47,43 @@ const wisdoms = [
 
 export function get_wisdom() {
   return wisdoms[Math.floor(Math.random() * wisdoms.length)];
+}
+
+const sophistries = [
+  "absolutely deserved",
+  "as expected of a riichi player",
+  "but have you tried skill",
+  "dora just comes to me",
+  "efficiency just means drawing good",
+  "every draw was planned for",
+  "fortune favors the bold, not the fold",
+  "hell waits more like swell waits",
+  "i don't read hands, i write them",
+  "i exude dealer energy",
+  "i'm not lucky, you're just predictable",
+  "imagine being afraid of dealer riichi",
+  "imagine drawing worse than iishanten",
+  "imagine having less than 100k points",
+  "imagine having less than 3 dora",
+  "imagine keeping so called 'safe tiles'",
+  "imagine playing safe when you can just win",
+  "it was all part of the plan",
+  "it's called getting good",
+  "it's only a yakuman",
+  "just as expected",
+  "just draw better tiles",
+  "let the scores speak for themselves",
+  "never not riichi ippatsu tsumo",
+  "real winners play the mind game",
+  "skill-based game",
+  "that game was all skill",
+  "that was all calculated",
+  "that was merely a 5-sided wait",
+  "that's why i changed waits",
+  "you just gotta manifest the tiles",
+  "you say danger, i say profit",
+]
+
+export function get_sophistry() {
+  return sophistries[Math.floor(Math.random() * sophistries.length)];
 }

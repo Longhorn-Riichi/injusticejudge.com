@@ -4,11 +4,11 @@ import process from "node:process";
 import { get_wisdom } from "./util.mts";
 
 export const config: Config = {
-  path: ["/", "/index", "/index.html"]
+  path: ["/skill", "/skill.html"]
 };
 
 export default async (req: Request, context: Context) => {
-  let body = fs.readFileSync(process.cwd() + "/_site/index.html", "utf8")
+  let body = fs.readFileSync(process.cwd() + "/_site/skill.html", "utf8")
                .replace(/<footer>/, `<footer><small>${get_wisdom()}</small><br/>`);
 
   return new Response(body, {

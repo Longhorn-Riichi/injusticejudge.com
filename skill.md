@@ -4,7 +4,7 @@ layout: default
 
 <header>
   <h1><a href="/">{{ site.title }}</a></h1>
-  <h3>Validate injustices suffered in Mahjong Soul/tenhou.net/Riichi City</h3>
+  <h3>Validate displays of true skill in Mahjong Soul/tenhou.net/Riichi City</h3>
 </header>
 
 <form method="POST" action="/redirect" name="main-form" style="flex: 1; display: flex; flex-direction: column">
@@ -30,12 +30,13 @@ layout: default
 <div class="result"></div>
 
 <footer>
-  <a href="/skill">Skills</a>
+  <a href="/">Injustices</a>
   |
   <a href="/statistics">Statistics</a>
   |
   <a href="https://github.com/Longhorn-Riichi/injusticejudge.com">Github</a>
 </footer>
+
 
 
 
@@ -83,7 +84,7 @@ main_button.addEventListener("click", e => {main_button.innerText = "Loading..."
 body::after {
   content: "";
   display: block;
-  background-image: url(/game.svg);
+  background-image: url(/game2.svg);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: bottom;
