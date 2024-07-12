@@ -6,7 +6,7 @@
     <div style="display: flex; flex-direction: column; flex: 1 0 auto;">
       <header>
         <h1><a href="/">{{ site.title }}</a></h1>
-        <h3>Validate injustices suffered in Mahjong Soul/tenhou.net/Riichi City</h3>
+        <h3>{{ site.subtitle }}</h3>
       </header>
       {{ content }}
       <footer>
@@ -18,5 +18,8 @@
       </footer>
     </div>
   </main>
+  <script type="text/javascript">
+  {% include main.js %}
+  </script>
 </body>
 </html>
