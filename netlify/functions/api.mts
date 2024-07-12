@@ -64,10 +64,10 @@ function make_response(look_for: string, result: string, default_result: string,
   let footer_text: string;
   if (look_for == "skill") {
     base = process.cwd() + "/_site/skill.html";
-    footer_text = get_wisdom();
+    footer_text = get_sophistry();
   } else {
     base = process.cwd() + "/_site/index.html";
-    footer_text = get_sophistry();
+    footer_text = get_wisdom();
   }
   if (result === "" || result === "<ul></ul>") result = default_result;
   const header: string = "<span class='result-header'>Results:</span><hr/>";
