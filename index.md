@@ -24,10 +24,10 @@ layout: default
 
 <div class="result"></div>
 
-<footer>
-  <a href="/skill">Skills</a>
-  |
-  <a href="/statistics">Statistics</a>
-  |
-  <a href="https://github.com/Longhorn-Riichi/injusticejudge.com">Github</a>
-</footer>
+<style>
+body::after {
+  background-image: url(/game.svg);
+  width: 100%;
+  height: 16rem;
+}
+</style>

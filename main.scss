@@ -22,12 +22,10 @@ html, body, main {
 body::after {
   content: "";
   display: block;
-  background-image: url(/game.svg);
+  background-image: none;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: bottom;
-  width: 100%;
-  height: 16rem;
 }
 footer {
   position: absolute;
@@ -210,4 +208,8 @@ input:focus { border-color: $background-color; }
     background: inherit;
     transform: translateX(-1em) translateY(-0.5em);
   }
+}
+
+p {
+  text-indent: 2rem;
 }

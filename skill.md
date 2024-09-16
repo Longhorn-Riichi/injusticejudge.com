@@ -69,5 +69,7 @@ main_button.addEventListener("click", e => {main_button.innerText = "Loading..."
 <style>
 body::after {
   background-image: url(/game2.svg);
+  width: 100%;
+  height: 16rem;
 }
 </style>

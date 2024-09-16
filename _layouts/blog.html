@@ -2,11 +2,10 @@
 <html>
 {% include head.html %}
 <body>
-  <main style="display: flex; flex-direction: column; text-align: center; max-width: 40rem; margin: 0 auto;">
+  <main style="display: flex; flex-direction: column; max-width: 40rem; margin: 0 auto;">
     <div style="display: flex; flex-direction: column; flex: 1 0 auto;">
-      <header>
-        <h1><a href="/">{{ site.title }}</a></h1>
-        <h3>{{ site.subtitle }}</h3>
+      <header style="text-align: center;">
+        <h1><a href="/">{{ site.title }} blog</a></h1>
       </header>
       {{ content }}
       <footer>
