@@ -9,7 +9,7 @@ export const config: Config = {
 
 export default async (req: Request, context: Context) => {
   let body = fs.readFileSync(process.cwd() + "/_site/index.html", "utf8")
-               .replace(/<footer>/, `<footer><small>${get_wisdom()}</small><br/>`);
+               .replace(/(<footer.*?>)/, `$1<small>${get_wisdom()}</small><br/>`);
 
   return new Response(body, {
     "status": 302,

@@ -9,7 +9,7 @@ export const config: Config = {
 
 export default async (req: Request, context: Context) => {
   let body = fs.readFileSync(process.cwd() + "/_site/skill.html", "utf8")
-               .replace(/<footer>/, `<footer><small>${get_sophistry()}</small><br/>`)
+               .replace(/(<footer.*?>)/, `$1<small>${get_sophistry()}</small><br/>`)
                .replace(/injustices suffered/g, "displays of true skill");
   return new Response(body, {
     "status": 302,

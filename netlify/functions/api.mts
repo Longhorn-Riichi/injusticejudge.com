@@ -73,7 +73,7 @@ function make_response(look_for: string, result: string, default_result: string,
   const header: string = "<span class='result-header'>Results:</span><hr/>";
   let body: string = fs.readFileSync(base, "utf8")
                        .replace(/<div class="result"><\/div>/, `<div class="result">${header}${result}</div>`)
-                       .replace(/<footer>/, `<footer><small>${footer_text}</small><br/>`);
+                       .replace(/(<footer.*?>)/, `$1<small>${footer_text}</small><br/>`);
   if (prefill) body = body.replace(/value=""/, `value="${prefill}"`);
   return new Response(body, {
     "status": 302,
