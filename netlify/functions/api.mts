@@ -45,11 +45,14 @@ const sideways_tiles = ["0M", "1M", "2M", "3M", "4M", "5M", "6M", "7M", "8M", "9
 const sideways_dora_tiles = ["0Md", "1Md", "2Md", "3Md", "4Md", "5Md", "6Md", "7Md", "8Md", "9Md", "0Pd", "1Pd", "2Pd", "3Pd", "4Pd", "5Pd", "6Pd", "7Pd", "8Pd", "9Pd", "0Sd", "1Sd", "2Sd", "3Sd", "4Sd", "5Sd", "6Sd", "7Sd", "8Sd", "9Sd", "1Zd", "2Zd", "3Zd", "4Zd", "5Zd", "6Zd", "7Zd", "1Xd"];
 function convert_tiles(s: string) : string {
   return s.replace(/<:(\d[mpszxMPSZX]d?):\d{19}>/g, (m, tile) => {
-    let [y, x, width] = [normal_tiles.indexOf(tile), 0, 0.75];
-    if (y == -1) [y, x, width] = [normal_dora_tiles.indexOf(tile), 0.75, 0.75];
-    if (y == -1) [y, x, width] = [sideways_tiles.indexOf(tile), 1.5, 1];
-    if (y == -1) [y, x, width] = [sideways_dora_tiles.indexOf(tile), 2.5, 1];
-    return `<div class="tile${width===1 ? ' sideways' : ''}" style="background-position: -${x}em -${y}em;"></div>`;
+    let [y, dora, sideways] = [normal_tiles.indexOf(tile), false, false];
+    if (y == -1) [y, dora, sideways] = [normal_dora_tiles.indexOf(tile), true, false];
+    if (y == -1) [y, dora, sideways] = [sideways_tiles.indexOf(tile), false, true];
+    if (y == -1) [y, dora, sideways] = [sideways_dora_tiles.indexOf(tile), true, true];
+    let class_name = `tile ${tile.toLowerCase().substr(0, 2)}`;
+    if (dora) class_name += " dora";
+    if (sideways) class_name += " sideways";
+    return `<div class="${class_name}"></div>`;
   });
 }
 
