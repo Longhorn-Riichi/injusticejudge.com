@@ -77,6 +77,7 @@ function make_response(look_for: string, result: string, default_result: string,
   let body: string = fs.readFileSync(base, "utf8")
                        .replace(/<div class="result"><\/div>/, `<div class="result">${header}${result}</div>`)
                        .replace(/(<footer.*?>)/, `$1<small>${footer_text}</small><br/>`);
+  if (look_for == "skill") body = body.replace(/injustices suffered/g, "displays of true skill");
   if (prefill) body = body.replace(/value=""/, `value="${prefill}"`);
   return new Response(body, {
     "status": 302,
