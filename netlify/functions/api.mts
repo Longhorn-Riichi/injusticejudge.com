@@ -108,7 +108,7 @@ export async function respond(key: string, default_response: string, look_for: s
       await redis.set(key, result);
     } catch (e) {
       console.error('Error during the request:', e.message);
-      result = `<div style="text-align: center; width: 100%">Error: no response from backend after 5s. It's still processing your game, try submitting again after a few seconds!</div>`
+      result = `<div style="text-align: center; width: 100%">Error: no response from backend after 5s. Your game is still being processed, so give it a minute and then try submitting again!</div>`
       prefill = input;
     }
   }
