@@ -11,3 +11,7 @@ node_modules
 # assets from jekyll mahjong plugin
 assets/
 _sass/
+
+# my stuff
+run.sh
+unpublished_posts/

@@ -49,6 +49,11 @@ h1 > a {
   color: $text-color;
 }
 
+/* details/summary */
+
+details { border: 1px solid $text-color; padding: 0.5rem; }
+details > summary { cursor: pointer; }
+
 /* input bar */
 
 div.input-bar {
