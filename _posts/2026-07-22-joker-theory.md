@@ -55,7 +55,7 @@ Similarly, you can recognize a hand is [iishanten](https://youtube.com/watch?v=m
 - headless {% mahjong 67p 4s 2x %} waiting on {% mahjong 58p4s %}
 - sticky {% mahjong 77p 4s 2x %} waiting on {% mahjong 7p23456s %}
 
-with the end result that your final wait becomes any of your iishanten waits. For example, if you're in floating tile iishanten with {% mahjong 22p 67p 34s 1m %}, then your wait for getting into tenpai is {% mahjong 58p25s %}, and you throw away the {% mahjong 1m %} afterwards. But if instead of a floating {% mahjong 1m %} you have a floating any-tile joker {% mahjong 22p 67p 34s 2x %}, then you're in _tenpai_ waiting for the same: {% mahjong 58p25s %}. This is because your any-tile joker {% mahjong 2x %} can be used to complete the full hand afterwards. Basically, treat your any-jokers as floating tiles that doesn't contribute to your hand shape, except for the fact that it makes your goal easier (tenpai -> iishanten).
+with the end result that your final wait becomes any of your iishanten waits. For example, if you're in floating tile iishanten with {% mahjong 22p 67p 34s 1m %}, then your wait for getting into tenpai is {% mahjong 58p25s %}, and you throw away the {% mahjong 1m %} afterwards. But if instead of a floating {% mahjong 1m %} you have a floating any-tile joker {% mahjong 22p 67p 34s 2x %}, then you're in _tenpai_ waiting for the same: {% mahjong 58p25s %}. This is because your any-tile joker {% mahjong 2x %} can be used to complete the full hand afterwards. Basically, treat your any-jokers as floating tiles that are completely useless for your hand except for the fact that having them makes your goal easier (tenpai -> iishanten).
 
 This extends naturally to two or more any-tile jokers. With two such jokers, you want __2-shanten with two floating tiles__. There are three such 2-shanten structures:
 
@@ -133,7 +133,7 @@ There are quite a few some-tile jokers out there, I'll list the ones I know in t
   + 索: any bamboo tile (again)
   + 萬: any character tile (again)
   + 番: any honor tile
-  + 皇: any-tile
+  + 皇: any-tile (again)
   + 紅: tiles with red on them (depends on tile set)
   + 藍: tiles with blue on them (depends on tile set)
   + 緑: tiles with green on them (depends on tile set)
@@ -210,13 +210,16 @@ Possibly the easiest example of this is {% mahjong 5x %} which fills any kanchan
 
 - 上: complete any sequence
 - 碰: complete any triplet or quad (not concealed)
-- 偏: complete a penchan (12 or 89) 偏章
 - 卡 or 卡隆: can be used to complete a kanchan (e.g. the 5 in 456)
 - 偏 or 偏章: can be used to complete a penchan (e.g. the 3 in 123)
 - 雀頭: can be used to complete a pair
 - 兩頭: can be used to complete a ryanmen
 - 龍: completes any 123/456/789 (dragon)
 - 断缺: completes any set that isn't honors or includes 5 (so 234, 768, 222...888 minus 555)
+- 么圍: completes any set containing a 1 or 9
+- 三圍: completes any set containing a 3
+- 五圍: completes any set containing a 5
+- 七圍: completes any set containing a 7
 - 老少: complete any 123 789 yaku
 - 步高: complete any shifted sequence yaku
 - 般高: complete any linked sequence yaku
@@ -232,23 +235,34 @@ For {% mahjong 5x %} in particular, it essentially upgrades any floating tile li
 
 So every different completion joker adds a whole new dimension of theory, and that is why I will not be expanding on the topic further in this post. I do think their strength outrivals that of some-tile jokers, especially in the hands of a player who has studied the theory behind that specific joker (= possibly no one, based on the zero literature I have found on the subject).
 
-### conditional jokers definition
+### variable jokers definition
 
-Lastly, __conditional jokers__ are jokers whose function depends on the game state. One possibly-familiar example is shiro pocchi, which acts as a white dragon in all cases, except it can complete any riichi hand when drawn in riichi. Here, the condition is "when drawn in riichi" and it becomes an any-tile joker when that condition is fulfilled.
+Lastly, __variable jokers__ are jokers whose identity can vary based on the game state. One possibly-familiar example is shiro pocchi, which acts as a white dragon in all cases, except it can complete any riichi hand when drawn in riichi. So its joker-ness is conditional on whether you draw it in riichi.
+
+Another easy example of a variable riichi is the 聚 joker. This tile takes on the value of any tile that you already have a copy of, so its identity is dependent on what's in your final winning hand.
 
 <details markdown="1">
-<summary>Some other conditional jokers I know of</summary>
+<summary>Some other variable jokers I know of</summary>
 
 - 生死: any tile with 0 or 4 copies publicly seen
-- 現: any tile for which 1-3 copies are visible (opposite of 生死)
+- 現: any tile for which 1-3 copies are publicly seen (opposite of 生死)
 - 獨: any tile not in hand
 - 聚: any tile with another copy in hand (opposite of 獨)
+- 限五: any tile in a suit you have 5 or less tiles of
+- 七起: any tile in a suit you have 7 or more tiles of
 - 熊: copies lowest tile in hand
 - 牛: copies highest tile in hand
 
 </details>
 
 Unfortunately I have no idea how to strategize with these especially since I've never played with them! If you have any ideas, ping me on Discord in the main mahjong server (I'm @m.arv, note I don't check friend requests.)
+
+### other jokers
+
+There are some other jokers that exist but don't neatly fit into the above categorization, such as 因倍 taking the identity 'all divisors of the dice roll sum', or 馬 being a different joker based on seat: east (一伍九東) south (二六中南) west (三七發西) north (四八白北). They're effectively number jokers (i.e. some-tile jokers) but they're also conditional, so they're not regular some-tile jokers, and they aren't exactly variable jokers since they can't change identity within a hand.
+
+So yea, good luck if your local parlor offers those jokers.
+
 
 
 
