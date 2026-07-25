@@ -35,7 +35,7 @@ I think this reasoning reveals itself most spectacularly when you consider singl
 
 so it's waiting on every tile, surprise (?). If you've studied iishanten shapes, you might recognize the first two wait patterns (like {% mahjong 4s2x %}) as a __sticky tile__: a single floating tile waiting for any tile in range 2 to create a __taatsu__, i.e. {% mahjong 24s 34s 44s 45s 46s %}. Here, the joker tile can attach to any of the single-tile waits (namely {% mahjong 147s %}) and turn it into a _taatsu_ in this manner.
 
-Unfortunately, this method is kind of unwieldy in the sense that you have to consider your hand as a massive superposition of all possible joker shapes. In the above example, we had to consider three in order to get all the waits. (I'm sure there was a better way to break that down but I am not doing it.) Anyways there is a theory that avoids this problem entirely that I don't know the name of, so let's call it "goal reduction theory".
+Unfortunately, this method is kind of unwieldy in the sense that you have to consider your hand as a massive superposition of all possible joker shapes. In the above example, we had to consider three in order to get all the waits. (I'm sure there was a better way to break that down but I am not doing it.) Anyways there is a theory that avoids this problem entirely that I don't know the name of, so for the sake of having a name, let's call it "goal reduction theory".
 
 ### goal reduction theory
 
@@ -159,6 +159,12 @@ Every single one of these is a some-tile joker. These joker tiles are not exactl
 - 合成 is 4689 (any composite)
 - 非質 is 14689 (any non-prime)
 - 非合成 is 12357 (any non-composite)
+- 因倍 takes on the identity 'all divisors of the dice roll sum'
+- 馬 is a different joker based on seat:
+  + east 一伍九東
+  + south 二六中南
+  + west 三七發西
+  + north 四八白北
 
 </details>
 
@@ -256,12 +262,6 @@ Another easy example of a variable riichi is the 聚 joker. This tile takes on t
 </details>
 
 Unfortunately I have no idea how to strategize with these especially since I've never played with them! If you have any ideas, ping me on Discord in the main mahjong server (I'm @m.arv, note I don't check friend requests.)
-
-### other jokers
-
-There are some other jokers that exist but don't neatly fit into the above categorization, such as 因倍 taking the identity 'all divisors of the dice roll sum', or 馬 being a different joker based on seat: east (一伍九東) south (二六中南) west (三七發西) north (四八白北). They're effectively number jokers (i.e. some-tile jokers) but they're also conditional, so they're not regular some-tile jokers, and they aren't exactly variable jokers since they can't change identity within a hand.
-
-So yea, good luck if your local parlor offers those jokers.
 
 
 
