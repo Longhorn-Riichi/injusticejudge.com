@@ -151,8 +151,6 @@ Every single one of these is a some-tile joker. These joker tiles are not exactl
 - 小 is 123, or 1234 joker if 中 not used
 - 中 is 456
 - 大 is 789, or 6789 joker if 中 not used
-- 攤 is 1234
-- 工 is 6789
 - 單 is 13579 (odd)
 - 雙 is 2468 (even)
 - 質 is 2357 (any prime)
