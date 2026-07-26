@@ -65,7 +65,7 @@ This extends naturally to two or more any-tile jokers. With two such jokers, you
 
 I should emphasize that getting any of these wait tiles here means __you win__. You have a very wide wait due to the two floating any-tile jokers changing your goal from tenpai to 2-shanten.
 
-Hopefully you can see the pattern: each any-tile jokers relaxes the requirement for winning a hand. So the main thrust of __goal reduction theory__ is: with _n_ jokers, your final waits are exactly the waits for a _n_-shanten hand with _n_ (ignorable joker) floating tiles. In other words, having any-tile jokers reduces the __goal__ of your hand, and thinking this way allows you to entirely skip thinking about your hand as a superposition of many possible joker shapes like {% mahjong 3p2x %}.
+Hopefully you can see the pattern: each any-tile joker relaxes the requirement for winning a hand. So the main thrust of __goal reduction theory__ is: with _n_ jokers, your final waits are exactly the waits for a _n_-shanten hand with _n_ (ignorable joker) floating tiles. In other words, having any-tile jokers reduces the __goal__ of your hand, and thinking this way allows you to entirely skip thinking about your hand as a superposition of many possible joker shapes like {% mahjong 3p2x %}.
 
 <details markdown="1">
 <summary>Mathing out shanten with any-tile jokers</summary>
@@ -219,15 +219,16 @@ Possibly the easiest example of this is {% mahjong 5x %} which fills any kanchan
 - 雀頭: can be used to complete a pair
 - 兩頭: can be used to complete a ryanmen
 - 龍: completes any 123/456/789 (dragon)
+- 蛇: completes any sequence that is not 123/456/789
 - 断缺: completes any set that isn't honors or includes 5 (so 234, 768, 222...888 minus 555)
-- 么圍: completes any set containing a 1 or 9
+- 么圍: completes any set containing a 1 or 9 (namely 111, 123, 789, 999, 11, 99)
 - 三圍: completes any set containing a 3
 - 五圍: completes any set containing a 5
 - 七圍: completes any set containing a 7
 - 老少: complete any 123 789 yaku
-- 步高: complete any shifted sequence yaku
-- 般高: complete any linked sequence yaku
-- 相逢: complete any shifted triplet yaku
+- 步高: complete any shifted sequence yaku (e.g. 234 345 456)
+- 般高: complete any linked sequence yaku (e.g. 234 456 768)
+- 相逢: complete any shifted triplet yaku (e.g. 222 333 444)
 
 </details>
 
@@ -243,7 +244,7 @@ So every different completion joker adds a whole new dimension of theory, and th
 
 Lastly, __variable jokers__ are jokers whose identity can vary based on the game state. One possibly-familiar example is shiro pocchi, which acts as a white dragon in all cases, except it can complete any riichi hand when drawn in riichi. So its joker-ness is conditional on whether you draw it in riichi.
 
-Another easy example of a variable riichi is the 聚 joker. This tile takes on the value of any tile that you already have a copy of, so its identity is dependent on what's in your final winning hand.
+Another easy example of a variable joker is the 聚 joker. This tile takes on the value of any tile that you already have a copy of, so its identity is dependent on what's in your final winning hand.
 
 <details markdown="1">
 <summary>Some other variable jokers I know of</summary>
@@ -256,6 +257,8 @@ Another easy example of a variable riichi is the 聚 joker. This tile takes on t
 - 七起: any tile in a suit you have 7 or more tiles of
 - 熊: copies lowest tile in hand
 - 牛: copies highest tile in hand
+- 確單: any tile of a suit of which you have an odd number of tiles (incl. this joker)
+- 確雙: any tile of a suit of which you have an even number of tiles (incl. this joker)
 
 </details>
 
