@@ -20,7 +20,6 @@
 
 title: injusticejudge
 subtitle: "Validate injustices suffered in <s>Mahjong Soul</s>/tenhou.net/Riichi City"
-notice: "Notice: As of 25 Jul 2026, log fetches stopped working for Mahjong Soul :("
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://injusticejudge.com" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: jekyllrb
