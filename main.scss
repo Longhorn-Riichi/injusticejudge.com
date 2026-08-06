@@ -12,8 +12,7 @@ $item-text-color:  #FFFFFF;
 /* main organization */
 
 html, body, main {
-  width: 100%;
-  margin: 0;
+  width: auto;
   background-color: $background-color;
   color: $text-color;
   font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
@@ -21,6 +20,7 @@ html, body, main {
   position: relative;
 }
 html, body { height: 100%; }
+header, main, footer { padding: 0 0.5rem; }
 body::after {
   content: "";
   display: block;
