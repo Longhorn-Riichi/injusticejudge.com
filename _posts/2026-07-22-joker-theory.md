@@ -190,10 +190,10 @@ This swap improves hand 1, since the {% mahjong 12p %} has become a wider {% mah
 
 So each {% mahjong 4x %} only applies to reducing the shanten contributed by circles _taatsu_, got it, does this generalize? The answer is yes: let's say you have a 147 joker {% mahjong 3x %}. This reduces shanten contributed by _taatsu_ waiting on 1, 4, or 7, namely 23, 56, 89, 11, 44, and 77. Because of this, {% mahjong 3x %} is decidedly _weaker_ than {% mahjong 4x %} for filling taatsu.
 
-What about sticky waits? The classic sticky iishanten with an any-tile joker looks like {% mahjong 11m 6s 2x %} waiting on {% mahjong 3m45678s %}. We can contrast the two jokers here:
+What about sticky waits? The classic sticky iishanten with an any-tile joker looks like {% mahjong 33m 6s 2x %} waiting on {% mahjong 3m45678s %}. We can contrast the two jokers here:
 
-1. {% mahjong 11m 6s 4x %} is 1-shanten
-2. {% mahjong 11m 6s 3x %} is _tenpai_ waiting on {% mahjong 3m568s %}
+1. {% mahjong 33m 6s 4x %} is 1-shanten
+2. {% mahjong 33m 6s 3x %} is _tenpai_ waiting on {% mahjong 3m568s %}
 
 Obviously the circles joker {% mahjong 4x %} is useless here, but the 147 joker {% mahjong 3x %} (by virtue of filling the wait requested by any possible sticky tile) turns this into tenpai (_no matter the identity of the sticky tile_ {% mahjong 6s %}). Because of this, {% mahjong 3x %} is decidedly _stronger_ than {% mahjong 4x %} when it comes to matching sticky tiles.
 
